@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Automática - NEERO</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="header-container"></div>
+    
+    <div class="content">
+        <div class="automation-container">
+            <!-- LED RGB Control -->
+            <div class="control-panel">
+                <div class="section-title">
+                    <h3>LED RGB</h3>
+                    <button class="toggle-switch" id="ledToggle" onclick="toggleLED()">Desligado</button>
+                </div>
+                
+                <div class="color-wheel-container">
+                    <canvas id="colorWheelCanvas" class="color-wheel-canvas" width="250" height="250"></canvas>
+                    <div class="color-selector" id="colorSelector"></div>
+                </div>
+                <div class="selected-color-display">
+                    <span>Cor atual:</span>
+                    <div id="selectedColorBox"></div>
+                    <span id="selectedColorHex"></span>
+                </div>
+                
+                <div class="brightness-control">
+                    <input type="range" min="0" max="100" value="80" class="slider" id="brightnessSlider">
+                </div>
+                
+                <div class="color-presets">
+                    <div class="color-preset" style="background: #3498db;" onclick="setPresetColor('#3498db')"></div>
+                    <div class="color-preset" style="background: #2ecc71;" onclick="setPresetColor('#2ecc71')"></div>
+                    <div class="color-preset" style="background: #f39c12;" onclick="setPresetColor('#f39c12')"></div>
+                    <div class="color-preset" style="background: #e74c3c;" onclick="setPresetColor('#e74c3c')"></div>
+                    <div class="color-preset" style="background: #9b59b6;" onclick="setPresetColor('#9b59b6')"></div>
+                    <div class="color-preset" style="background: #d148c6;" onclick="setPresetColor('#d148c6')"></div>
+                </div>
+            </div>
+
+            <!-- Computer Control -->
+            <div class="control-panel computer-control">
+                <div class="section-title">
+                    <h3>Computador</h3>
+                    <button class="toggle-switch" id="computerToggle" onclick="toggleComputer()">Desligado</button>
+                </div>
+            </div>
+
+            <!-- Fan Speed Control -->
+            <div class="control-panel fan-control">
+                <h3 style="color: #2c3e50; margin-bottom: 15px;">
+                    Velocidade do Ventilador
+                    <span class="status-indicator" id="esp8266Status"></span>
+                </h3>
+                
+                <div class="fan-slider-container">
+                    <input type="range" min="0" max="100" value="0" class="fan-slider" id="fanSlider">
+                    <div class="fan-labels">
+                        <span>0</span>
+                        <span>100</span>
+                    </div>
+                </div>
+                
+                <div class="fan-level">
+                    Nível: <span id="fanLevelText">Desligado</span> (<span id="fanSpeedValue">0</span>%)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="includes/header.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/esp8266.js"></script>
+    <script src="js/automation.js"></script>
+    <script>
+        setActivePage('automation');
+        // Inicializar controles quando a página carregar
+        document.addEventListener('DOMContentLoaded', initializeAutomation);
+    </script>
+</body>
+</html>
